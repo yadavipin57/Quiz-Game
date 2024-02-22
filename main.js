@@ -90,9 +90,191 @@ const questionArray = [
       { text: 'Michelangelo', correct: false },
     ],
   },
+  {
+    question: 'What is the capital of Australia?',
+    options: [
+      { text: 'Sydney', correct: false },
+      { text: 'Melbourne', correct: false },
+      { text: 'Canberra', correct: true },
+      { text: 'Perth', correct: false },
+    ],
+  },
+  {
+    question: 'Who wrote the novel "1984"?',
+    options: [
+      { text: 'George Orwell', correct: true },
+      { text: 'Aldous Huxley', correct: false },
+      { text: 'F. Scott Fitzgerald', correct: false },
+      { text: 'Ray Bradbury', correct: false },
+    ],
+  },
+  {
+    question: 'Who painted the Mona Lisa?',
+    options: [
+      { text: 'Leonardo da Vinci', correct: true },
+      { text: 'Vincent van Gogh', correct: false },
+      { text: 'Pablo Picasso', correct: false },
+      { text: 'Michelangelo', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of South Korea?',
+    options: [
+      { text: 'Seoul', correct: true },
+      { text: 'Tokyo', correct: false },
+      { text: 'Pyongyang', correct: false },
+      { text: 'Beijing', correct: false },
+    ],
+  },
+  {
+    question: 'Who is the author of "The Great Gatsby"?',
+    options: [
+      { text: 'F. Scott Fitzgerald', correct: true },
+      { text: 'Ernest Hemingway', correct: false },
+      { text: 'Harper Lee', correct: false },
+      { text: 'William Faulkner', correct: false },
+    ],
+  },
+  {
+    question: 'Which country is the largest by land area?',
+    options: [
+      { text: 'Russia', correct: true },
+      { text: 'Canada', correct: false },
+      { text: 'China', correct: false },
+      { text: 'United States', correct: false },
+    ],
+  },
+  {
+    question: 'Who discovered penicillin?',
+    options: [
+      { text: 'Alexander Fleming', correct: true },
+      { text: 'Marie Curie', correct: false },
+      { text: 'Albert Einstein', correct: false },
+      { text: 'Isaac Newton', correct: false },
+    ],
+  },
+  {
+    question: 'What is the chemical symbol for water?',
+    options: [
+      { text: 'H2O', correct: true },
+      { text: 'CO2', correct: false },
+      { text: 'O2', correct: false },
+      { text: 'NaCl', correct: false },
+    ],
+  },
+  {
+    question: 'Who is known as the "Father of Geometry"?',
+    options: [
+      { text: 'Euclid', correct: true },
+      { text: 'Pythagoras', correct: false },
+      { text: 'Archimedes', correct: false },
+      { text: 'Aristotle', correct: false },
+    ],
+  },
+  {
+    question: 'What is the largest ocean on Earth?',
+    options: [
+      { text: 'Pacific Ocean', correct: true },
+      { text: 'Atlantic Ocean', correct: false },
+      { text: 'Indian Ocean', correct: false },
+      { text: 'Arctic Ocean', correct: false },
+    ],
+  },
+  {
+    question: 'Who discovered gravity?',
+    options: [
+      { text: 'Isaac Newton', correct: true },
+      { text: 'Albert Einstein', correct: false },
+      { text: 'Galileo Galilei', correct: false },
+      { text: 'Nikola Tesla', correct: false },
+    ],
+  },
+  {
+    question: "Which gas makes up the majority of Earth's atmosphere?",
+    options: [
+      { text: 'Nitrogen', correct: true },
+      { text: 'Oxygen', correct: false },
+      { text: 'Carbon dioxide', correct: false },
+      { text: 'Argon', correct: false },
+    ],
+  },
+  {
+    question: 'Who was the first person to walk on the moon?',
+    options: [
+      { text: 'Neil Armstrong', correct: true },
+      { text: 'Buzz Aldrin', correct: false },
+      { text: 'Yuri Gagarin', correct: false },
+      { text: 'Alan Shepard', correct: false },
+    ],
+  },
+  {
+    question: 'What is the tallest mountain in the world?',
+    options: [
+      { text: 'Mount Everest', correct: true },
+      { text: 'K2', correct: false },
+      { text: 'Kangchenjunga', correct: false },
+      { text: 'Lhotse', correct: false },
+    ],
+  },
+  {
+    question: 'Who was the first female Prime Minister of the United Kingdom?',
+    options: [
+      { text: 'Margaret Thatcher', correct: true },
+      { text: 'Theresa May', correct: false },
+      { text: 'Angela Merkel', correct: false },
+      { text: 'Indira Gandhi', correct: false },
+    ],
+  },
+  {
+    question: 'What is the chemical symbol for silver?',
+    options: [
+      { text: 'Ag', correct: true },
+      { text: 'Au', correct: false },
+      { text: 'Pt', correct: false },
+      { text: 'Cu', correct: false },
+    ],
+  },
+  {
+    question: 'Who is the author of "The Catcher in the Rye"?',
+    options: [
+      { text: 'J.D. Salinger', correct: true },
+      { text: 'F. Scott Fitzgerald', correct: false },
+      { text: 'Ernest Hemingway', correct: false },
+      { text: 'Harper Lee', correct: false },
+    ],
+  },
+  {
+    question: 'What is the longest river in Africa?',
+    options: [
+      { text: 'Nile', correct: true },
+      { text: 'Congo', correct: false },
+      { text: 'Niger', correct: false },
+      { text: 'Zambezi', correct: false },
+    ],
+  },
+  {
+    question: 'Which is the fastest land animal in the world?',
+    options: [
+      { text: 'Cheetah', correct: true },
+      { text: 'Ostrich', correct: false },
+      { text: 'Lion', correct: false },
+      { text: 'Giraff', correct: false },
+    ],
+  },
+  {
+    question: 'What is the capital of Russia?',
+    options: [
+      { text: 'Munich', correct: false },
+      { text: 'Moscow', correct: true },
+      { text: 'London', correct: false },
+      { text: 'Washington DC', correct: false },
+    ],
+  },
 ];
 
 // Making the variables
+
+const mainContainer = document.querySelector('main-container');
 
 const totalTime = document.querySelector('.total-time');
 const timerBox = document.querySelector('.timer-box');
@@ -102,6 +284,7 @@ const quizBoxParent = document.querySelector('.quiz-box-parent');
 const quizBox = document.querySelector('.quiz-box');
 
 const headButtons = document.querySelector('.head-buttons');
+const infoIcon = document.querySelector('.info-icon');
 const submitButton = document.querySelector('.submit');
 const quitButton = document.querySelector('.quit-quiz');
 
@@ -113,6 +296,9 @@ const nextButton = document.querySelector('.next-button');
 
 const playAgain = document.querySelector('.play-again');
 const scoreBox = document.querySelector('.score');
+
+const informationPage = document.querySelector('.information-page');
+const infoClose = document.querySelector('.info-close');
 
 // Timer
 
@@ -143,6 +329,18 @@ function timerFunction() {
 
 let currentIndex = 0;
 let score = 0;
+
+// Info icon
+
+infoIcon.addEventListener('click', function () {
+  informationPage.style.display = 'block';
+});
+
+// Info close
+
+infoClose.addEventListener('click', function () {
+  informationPage.style.display = 'none';
+});
 
 // Button event listeners
 
@@ -222,7 +420,7 @@ function showQuestion() {
 
   quizBox.innerHTML = `
     <div class="question-box">
-      <h3>${currentIndex + 1}. ${question}?</h3>
+      <h3>${currentIndex + 1}. ${question}</h3>
     </div>
     <div class="option-box">
       ${optionsHTML}
