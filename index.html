@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>quiz</title>
+  </head>
+
+  <body>
+    <main class="main-container">
+      <div class="total-time">
+        <p>You have 150 seconds</p>
+      </div>
+      <div class="timer-box">
+        <div class="remaining-time"></div>
+      </div>
+      <div class="quiz-box-parent">
+        <!-- Head features -->
+        <div class="head-features">
+          <h1 class="heading">Play Quiz</h1>
+          <div class="head-buttons">
+            <button class="submit">Submit</button>
+            <button class="quit-quiz">Quit</button>
+            <!-- Quit button is nitially not dispalyed -->
+          </div>
+        </div>
+        <!-- Score, start and play again button  -->
+        <h3 class="score"></h3>
+        <button class="start-quiz">Start Quiz</button>
+        <button class="play-again">Play Again</button>
+        <!-- Quiz box -->
+        <div class="quiz-box"></div>
+        <div class="prev-next-button">
+          <!-- <button class="previous-button" disabled>Previous</button> -->
+          <button class="next-button">Next</button>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script src="main.js"></script>
+</html>
