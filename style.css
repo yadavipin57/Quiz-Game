@@ -204,7 +204,7 @@ button:disabled {
   }
 
   .heading i {
-    margin: 0 0 0 -10px;
+    margin: 0 0 0 0;
     font-size: 0.9rem;
     cursor: pointer;
   }
