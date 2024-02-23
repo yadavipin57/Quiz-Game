@@ -1,30 +1,207 @@
+// Making the variables
+
+const mainContainer = document.querySelector('.main-container');
+
+const totalTime = document.querySelector('.total-time');
+const timerBox = document.querySelector('.timer-box');
+const remainingTime = document.querySelector('.remaining-time');
+
+const quizBoxParent = document.querySelector('.quiz-box-parent');
+const quizBox = document.querySelector('.quiz-box');
+
+const headFeatures = document.querySelector('.head-features');
+const headButtons = document.querySelector('.head-buttons');
+const infoIcon = document.querySelector('.info-icon');
+const submitButton = document.querySelector('.submit');
+const quitButton = document.querySelector('.quit-quiz');
+
+const startButton = document.querySelector('.start-quiz');
+
+const prevNextContainer = document.querySelector('.prev-next-button');
+const prevButton = document.querySelector('.previous-button');
+const nextButton = document.querySelector('.next-button');
+
+const playAgain = document.querySelector('.play-again');
+const scoreBox = document.querySelector('.score');
+
+const informationPage = document.querySelector('.information-page');
+const infoClose = document.querySelector('.info-close');
+
+// Timer
+
+function timerFunction() {
+  let answerTime = 150;
+  const timerInterval = setInterval(function () {
+    answerTime--;
+    if (answerTime <= 15) {
+      remainingTime.style.color = '#ff4433';
+    }
+
+    remainingTime.innerHTML = `${answerTime}`;
+
+    if (answerTime === 0) {
+      clearInterval(timerInterval);
+      timerBox.style.display = 'none';
+      scoreBox.innerHTML = `Your total score is ${score} out of ${questionArray.length}`;
+      quizBox.style.display = 'none';
+      headButtons.style.display = 'none';
+      prevNextContainer.style.display = 'none';
+      playAgain.style.display = 'block';
+      submitFunction();
+    }
+  }, 1000);
+}
+
+// Giving initial values to index and score
+
+let currentIndex = 0;
+let score = 0;
+
+// Info icon
+
+infoIcon.addEventListener('click', function () {
+  informationPage.style.display = 'block';
+});
+
+// Info close
+
+infoClose.addEventListener('click', function () {
+  informationPage.style.display = 'none';
+});
+
+// Button event listeners
+
+startButton.addEventListener('click', function () {
+  totalTime.style.display = 'none';
+  timerBox.style.display = 'flex';
+  startButton.style.display = 'none';
+  submitButton.style.display = 'block';
+  quitButton.style.display = 'block';
+  quizBox.style.display = 'block';
+  prevNextContainer.style.display = 'flex';
+  showQuestion();
+  timerFunction();
+});
+
+function submitFunction() {
+  submitButton.addEventListener('click', function () {
+    timerBox.style.display = 'none';
+    scoreBox.innerHTML = `Your total score is ${score} out of ${questionArray.length}`;
+    quizBox.style.display = 'none';
+    headButtons.style.display = 'none';
+    prevNextContainer.style.display = 'none';
+    playAgain.style.display = 'block';
+  });
+}
+submitFunction();
+
+playAgain.addEventListener('click', function () {
+  location.reload();
+  timerFunction();
+});
+
+nextButton.addEventListener('click', function () {
+  if (currentIndex === questionArray.length - 2) {
+    currentIndex++;
+    showQuestion();
+    nextButton.setAttribute('disabled', '');
+    return;
+  }
+  // prevButton.removeAttribute('disabled');
+  currentIndex++;
+  showQuestion();
+});
+
+// prevButton.addEventListener('click', function () {
+//   if (currentIndex === 1) {
+//     prevButton.setAttribute('disabled', '');
+//     currentIndex--;
+//     showQuestion();
+//     return;
+//   }
+//   currentIndex--;
+//   showQuestion();
+//   const optionButtons = document.querySelectorAll('.select-option');
+//   optionButtons.forEach((button) => {
+//     button.disabled = true;
+//   });
+//   nextButton.removeAttribute('disabled');
+// });
+
+quitButton.addEventListener('click', function () {
+  location.reload();
+});
+
+// Show questions
+
+function showQuestion() {
+  const { question, options } = questionArray[currentIndex];
+
+  let optionsHTML = ''; // Initialize an empty string to store HTML for options
+
+  options.forEach((option, index) => {
+    optionsHTML += `<button class="select-option" data-correct="${
+      option.correct
+    }"> ${String.fromCharCode(65 + index)}. ${option.text}</button>`;
+  });
+
+  quizBox.innerHTML = `
+    <div class="question-box">
+      <h3>${currentIndex + 1}. ${question}</h3>
+    </div>
+    <div class="option-box">
+      ${optionsHTML}
+    </div>
+  `;
+
+  // Add event listener to all option buttons
+  const optionButtons = document.querySelectorAll('.select-option');
+  optionButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      const isCorrect = button.getAttribute('data-correct') === 'true';
+      if (isCorrect) {
+        e.target.style.backgroundColor = '#9aeabc';
+        e.target.style.color = '#0398C9';
+        score++;
+      } else {
+        e.target.style.backgroundColor = '#ff9393';
+        e.target.style.color = '#0398C9';
+      }
+
+      optionButtons.forEach((btn) => {
+        btn.disabled = true;
+      });
+    });
+  });
+}
+
 // This is questions
 const questionArray = [
   {
     question: 'Who is the current Secretary-General of the United Nations?',
     options: [
-      { text: 'António Guterres', correct: true },
       { text: 'Ban Ki-moon', correct: false },
-      { text: 'Kofi Annan', correct: false },
       { text: 'Javier Pérez de Cuéllar', correct: false },
+      { text: 'António Guterres', correct: true },
+      { text: 'Kofi Annan', correct: false },
     ],
   },
   {
     question: 'What is the largest desert in the world by area?',
     options: [
       { text: 'Sahara Desert', correct: false },
-      { text: 'Gobi Desert', correct: false },
-      { text: 'Antarctica Desert', correct: true },
       { text: 'Arabian Desert', correct: false },
+      { text: 'Antarctica Desert', correct: true },
+      { text: 'Gobi Desert', correct: false },
     ],
   },
   {
     question: 'Who wrote the famous novel "To Kill a Mockingbird"?',
     options: [
-      { text: 'Harper Lee', correct: true },
-      { text: 'J.D. Salinger', correct: false },
       { text: 'Mark Twain', correct: false },
+      { text: 'Harper Lee', correct: true },
       { text: 'F. Scott Fitzgerald', correct: false },
+      { text: 'J.D. Salinger', correct: false },
     ],
   },
   {
@@ -165,17 +342,17 @@ const questionArray = [
   {
     question: 'Who is known as the "Father of Geometry"?',
     options: [
-      { text: 'Euclid', correct: true },
       { text: 'Pythagoras', correct: false },
       { text: 'Archimedes', correct: false },
+      { text: 'Euclid', correct: true },
       { text: 'Aristotle', correct: false },
     ],
   },
   {
     question: 'What is the largest ocean on Earth?',
     options: [
-      { text: 'Pacific Ocean', correct: true },
       { text: 'Atlantic Ocean', correct: false },
+      { text: 'Pacific Ocean', correct: true },
       { text: 'Indian Ocean', correct: false },
       { text: 'Arctic Ocean', correct: false },
     ],
@@ -183,35 +360,35 @@ const questionArray = [
   {
     question: 'Who discovered gravity?',
     options: [
-      { text: 'Isaac Newton', correct: true },
       { text: 'Albert Einstein', correct: false },
       { text: 'Galileo Galilei', correct: false },
       { text: 'Nikola Tesla', correct: false },
+      { text: 'Isaac Newton', correct: true },
     ],
   },
   {
     question: "Which gas makes up the majority of Earth's atmosphere?",
     options: [
-      { text: 'Nitrogen', correct: true },
       { text: 'Oxygen', correct: false },
       { text: 'Carbon dioxide', correct: false },
       { text: 'Argon', correct: false },
+      { text: 'Nitrogen', correct: true },
     ],
   },
   {
     question: 'Who was the first person to walk on the moon?',
     options: [
-      { text: 'Neil Armstrong', correct: true },
       { text: 'Buzz Aldrin', correct: false },
       { text: 'Yuri Gagarin', correct: false },
+      { text: 'Neil Armstrong', correct: true },
       { text: 'Alan Shepard', correct: false },
     ],
   },
   {
     question: 'What is the tallest mountain in the world?',
     options: [
-      { text: 'Mount Everest', correct: true },
       { text: 'K2', correct: false },
+      { text: 'Mount Everest', correct: true },
       { text: 'Kangchenjunga', correct: false },
       { text: 'Lhotse', correct: false },
     ],
@@ -219,17 +396,17 @@ const questionArray = [
   {
     question: 'Who was the first female Prime Minister of the United Kingdom?',
     options: [
-      { text: 'Margaret Thatcher', correct: true },
       { text: 'Theresa May', correct: false },
       { text: 'Angela Merkel', correct: false },
+      { text: 'Margaret Thatcher', correct: true },
       { text: 'Indira Gandhi', correct: false },
     ],
   },
   {
     question: 'What is the chemical symbol for silver?',
     options: [
-      { text: 'Ag', correct: true },
       { text: 'Au', correct: false },
+      { text: 'Ag', correct: true },
       { text: 'Pt', correct: false },
       { text: 'Cu', correct: false },
     ],
@@ -246,19 +423,19 @@ const questionArray = [
   {
     question: 'What is the longest river in Africa?',
     options: [
-      { text: 'Nile', correct: true },
       { text: 'Congo', correct: false },
       { text: 'Niger', correct: false },
       { text: 'Zambezi', correct: false },
+      { text: 'Nile', correct: true },
     ],
   },
   {
     question: 'Which is the fastest land animal in the world?',
     options: [
-      { text: 'Cheetah', correct: true },
       { text: 'Ostrich', correct: false },
       { text: 'Lion', correct: false },
       { text: 'Giraff', correct: false },
+      { text: 'Cheetah', correct: true },
     ],
   },
   {
@@ -271,179 +448,3 @@ const questionArray = [
     ],
   },
 ];
-
-// Making the variables
-
-const mainContainer = document.querySelector('main-container');
-
-const totalTime = document.querySelector('.total-time');
-const timerBox = document.querySelector('.timer-box');
-const remainingTime = document.querySelector('.remaining-time');
-
-const quizBoxParent = document.querySelector('.quiz-box-parent');
-const quizBox = document.querySelector('.quiz-box');
-
-const headButtons = document.querySelector('.head-buttons');
-const infoIcon = document.querySelector('.info-icon');
-const submitButton = document.querySelector('.submit');
-const quitButton = document.querySelector('.quit-quiz');
-
-const startButton = document.querySelector('.start-quiz');
-
-const prevNextContainer = document.querySelector('.prev-next-button');
-const prevButton = document.querySelector('.previous-button');
-const nextButton = document.querySelector('.next-button');
-
-const playAgain = document.querySelector('.play-again');
-const scoreBox = document.querySelector('.score');
-
-const informationPage = document.querySelector('.information-page');
-const infoClose = document.querySelector('.info-close');
-
-// Timer
-
-function timerFunction() {
-  let answerTime = 150;
-  const timerInterval = setInterval(function () {
-    answerTime--;
-    if (answerTime <= 5) {
-      remainingTime.style.color = '#ff4433';
-    }
-
-    remainingTime.innerHTML = `${answerTime}`;
-
-    if (answerTime === 0) {
-      clearInterval(timerInterval);
-      timerBox.style.display = 'none';
-      scoreBox.innerHTML = `Your total score is ${score} out of ${questionArray.length}`;
-      quizBox.style.display = 'none';
-      headButtons.style.display = 'none';
-      prevNextContainer.style.display = 'none';
-      playAgain.style.display = 'block';
-      submitFunction();
-    }
-  }, 1000);
-}
-
-// Giving initial values to index and score
-
-let currentIndex = 0;
-let score = 0;
-
-// Info icon
-
-infoIcon.addEventListener('click', function () {
-  informationPage.style.display = 'block';
-});
-
-// Info close
-
-infoClose.addEventListener('click', function () {
-  informationPage.style.display = 'none';
-});
-
-// Button event listeners
-
-startButton.addEventListener('click', function () {
-  totalTime.style.display = 'none';
-  timerBox.style.display = 'flex';
-  startButton.style.display = 'none';
-  submitButton.style.display = 'block';
-  quitButton.style.display = 'block';
-  quizBox.style.display = 'block';
-  prevNextContainer.style.display = 'flex';
-  showQuestion();
-  timerFunction();
-});
-
-function submitFunction() {
-  submitButton.addEventListener('click', function () {
-    timerBox.style.display = 'none';
-    scoreBox.innerHTML = `Your total score is ${score} out of ${questionArray.length}`;
-    quizBox.style.display = 'none';
-    headButtons.style.display = 'none';
-    prevNextContainer.style.display = 'none';
-    playAgain.style.display = 'block';
-  });
-}
-submitFunction();
-
-playAgain.addEventListener('click', function () {
-  location.reload();
-  timerFunction();
-});
-
-nextButton.addEventListener('click', function () {
-  if (currentIndex === questionArray.length - 2) {
-    currentIndex++;
-    showQuestion();
-    nextButton.setAttribute('disabled', '');
-    return;
-  }
-  // prevButton.removeAttribute('disabled');
-  currentIndex++;
-  showQuestion();
-});
-
-// prevButton.addEventListener('click', function () {
-//   if (currentIndex === 1) {
-//     prevButton.setAttribute('disabled', '');
-//     currentIndex--;
-//     showQuestion();
-//     return;
-//   }
-//   currentIndex--;
-//   showQuestion();
-//   const optionButtons = document.querySelectorAll('.select-option');
-//   optionButtons.forEach((button) => {
-//     button.disabled = true;
-//   });
-//   nextButton.removeAttribute('disabled');
-// });
-
-quitButton.addEventListener('click', function () {
-  location.reload();
-});
-
-// Show questions
-
-function showQuestion() {
-  const { question, options } = questionArray[currentIndex];
-
-  let optionsHTML = ''; // Initialize an empty string to store HTML for options
-
-  options.forEach((option, index) => {
-    optionsHTML += `<button class="select-option" data-correct="${
-      option.correct
-    }"> ${String.fromCharCode(65 + index)}. ${option.text}</button>`;
-  });
-
-  quizBox.innerHTML = `
-    <div class="question-box">
-      <h3>${currentIndex + 1}. ${question}</h3>
-    </div>
-    <div class="option-box">
-      ${optionsHTML}
-    </div>
-  `;
-
-  // Add event listener to all option buttons
-  const optionButtons = document.querySelectorAll('.select-option');
-  optionButtons.forEach((button) => {
-    button.addEventListener('click', function (e) {
-      const isCorrect = button.getAttribute('data-correct') === 'true';
-      if (isCorrect) {
-        e.target.style.backgroundColor = '#9aeabc';
-        e.target.style.color = '#002765';
-        score++;
-      } else {
-        e.target.style.backgroundColor = '#ff9393';
-        e.target.style.color = '#002765';
-      }
-
-      optionButtons.forEach((btn) => {
-        btn.disabled = true;
-      });
-    });
-  });
-}
