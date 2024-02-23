@@ -15,8 +15,8 @@ body {
   /* Above line prevents margin collapse of .main-container and .quiz-box    */
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, #153677, #4e085f);
-  color: #002765;
+  background: linear-gradient(135deg, #fc6736, #fdbf60);
+  color: #fc6736;
 }
 
 .total-time {
@@ -24,6 +24,7 @@ body {
   font-size: 32px;
   color: #fff;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -40,7 +41,7 @@ body {
 .remaining-time {
   font-size: 32px;
   font-weight: 900;
-  color: #00b14d;
+  color: #fc6736;
 }
 
 .quiz-box-parent {
@@ -57,7 +58,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid #002765;
+  border-bottom: 3px solid #fc6736;
 }
 
 .heading {
@@ -100,7 +101,7 @@ body {
 button {
   padding: 12px;
   font-size: 1rem;
-  background-color: #002765;
+  background-color: #fc6736;
   outline: none;
   border: none;
   border-radius: 4px;
@@ -116,15 +117,15 @@ button:disabled {
 .option-box button {
   margin: 10px 0;
   background-color: #fff;
-  color: #002765;
+  color: #fc6736;
   width: 100%;
   text-align: left;
-  border: 1px solid #002765;
+  border: 1px solid #fc6736;
   transition: all 0.3s;
 }
 
 .option-box .select-option:hover {
-  background-color: #002765;
+  background-color: #fc6736;
   color: #fff;
 }
 
@@ -153,7 +154,7 @@ button:disabled {
   list-style-position: inside;
   box-shadow: 0 0 100px rgba(0, 0, 0, 05);
   border-radius: 12px;
-  background-color: #002765;
+  background-color: #fc6736;
   color: #fff;
 }
 
@@ -204,7 +205,7 @@ button:disabled {
   }
 
   .heading i {
-    margin: 0 0 0 0;
+    margin: 0 0 0 0px;
     font-size: 0.9rem;
     cursor: pointer;
   }
