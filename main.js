@@ -161,11 +161,17 @@ function showQuestion() {
       const isCorrect = button.getAttribute('data-correct') === 'true';
       if (isCorrect) {
         e.target.style.backgroundColor = '#9aeabc';
-        e.target.style.color = '#0398C9';
+        e.target.style.color = '#024157';
         score++;
       } else {
         e.target.style.backgroundColor = '#ff9393';
-        e.target.style.color = '#0398C9';
+        e.target.style.color = '#024157';
+        optionButtons.forEach((btn) => {
+          if (btn.getAttribute('data-correct') === 'true') {
+            btn.style.backgroundColor = '#9aeabc';
+            btn.style.color = '#024157';
+          }
+        });
       }
 
       optionButtons.forEach((btn) => {
